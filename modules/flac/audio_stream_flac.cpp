@@ -216,10 +216,6 @@ Ref<AudioStreamPlayback> AudioStreamFLAC::instantiate_playback() {
 	return flacs;
 }
 
-String AudioStreamFLAC::get_stream_name() const {
-	return ""; //return stream_name;
-}
-
 void AudioStreamFLAC::metadata_proc(void *pUserData, drflac_metadata *pMetadata) {
 	if (!pMetadata || pMetadata->type != DRFLAC_METADATA_BLOCK_TYPE_VORBIS_COMMENT)
 		return;

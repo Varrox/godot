@@ -55,7 +55,7 @@ void initialize_flac_module(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
 	if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
 		GDREGISTER_CLASS(ResourceImporterFLAC);
-		
+
 		EditorNode::add_init_callback(_editor_init);
 	}
 #endif

@@ -102,7 +102,7 @@ Error ResourceImporterFLAC::import(ResourceUID::ID p_source_id, const String &p_
 	if (flac_stream.is_null()) {
 		return ERR_CANT_OPEN;
 	}
-	
+
 	flac_stream->set_loop(loop);
 	flac_stream->set_loop_offset(loop_offset);
 	flac_stream->set_bpm(bpm);

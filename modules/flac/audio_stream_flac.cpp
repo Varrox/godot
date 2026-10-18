@@ -206,7 +206,7 @@ Ref<AudioStreamPlayback> AudioStreamFLAC::instantiate_playback() {
 	flacs->flac_stream = Ref<AudioStreamFLAC>(this);
 
 	flacs->flacd = drflac_open_memory(data.ptr(), data.size(), (drflac_allocation_callbacks *)&dr_alloc_calls);
-	
+
 	flacs->frames_mixed = 0;
 	flacs->active = false;
 	flacs->loops = 0;

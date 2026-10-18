@@ -59,7 +59,7 @@ int AudioStreamPlaybackFLAC::_mix_internal(AudioFrame *p_buffer, int p_frames) {
 	while (todo && active) {
 		float buf_frame[2];
 		
-		int samples_mixed  = drflac_read_pcm_frames_f32(flacd, 1, buf_frame);
+		int samples_mixed = drflac_read_pcm_frames_f32(flacd, 1, buf_frame);
 
 		if (samples_mixed) {
 			p_buffer[p_frames - todo] = AudioFrame(buf_frame[0], buf_frame[flacd->channels - 1]);
@@ -217,10 +217,11 @@ Ref<AudioStreamPlayback> AudioStreamFLAC::instantiate_playback() {
 }
 
 void AudioStreamFLAC::metadata_proc(void *pUserData, drflac_metadata *pMetadata) {
-	if (!pMetadata || pMetadata->type != DRFLAC_METADATA_BLOCK_TYPE_VORBIS_COMMENT)
+	if (!pMetadata || pMetadata->type != DRFLAC_METADATA_BLOCK_TYPE_VORBIS_COMMENT) {
 		return;
+	}
 
-	Dictionary *dictionary = static_cast<Dictionary*>(pUserData);
+	Dictionary *dictionary = static_cast<Dictionary *>(pUserData);
 	ERR_FAIL_COND(!dictionary);
 
 	drflac_vorbis_comment_iterator iterator;
@@ -231,7 +232,7 @@ void AudioStreamFLAC::metadata_proc(void *pUserData, drflac_metadata *pMetadata)
 	// This is how tags are stored (artist, album, etc.), and we parse them out for display.
 	// See https://xiph.org/vorbis/doc/v-comment.html
 
-	while(const char* pComment = drflac_next_vorbis_comment(&iterator, &comment_length)) {
+	while (const char *pComment = drflac_next_vorbis_comment(&iterator, &comment_length)) {
 		String c = String::utf8(pComment);
 		int equals = c.find_char('=');
 
@@ -252,7 +253,7 @@ void AudioStreamFLAC::set_data(const Vector<uint8_t> &p_data) {
 	Dictionary dictionary;
 
 	drflac *flacd = drflac_open_memory_with_metadata(p_data.ptr(), p_data.size(), &metadata_proc, &dictionary, (drflac_allocation_callbacks *)&dr_alloc_calls);
-	if (!flacd || flacd->sampleRate == 0){
+	if (!flacd || flacd->sampleRate == 0) {
 		ERR_FAIL_MSG("Failed to decode FLAC file. Make sure it is a valid FLAC audio file.");
 	}
 

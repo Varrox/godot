@@ -58,7 +58,7 @@ int AudioStreamPlaybackFLAC::_mix_internal(AudioFrame *p_buffer, int p_frames) {
 
 	while (todo && active) {
 		float buf_frame[2];
-		
+
 		int samples_mixed = drflac_read_pcm_frames_f32(flacd, 1, buf_frame);
 
 		if (samples_mixed) {
@@ -210,7 +210,7 @@ Ref<AudioStreamPlayback> AudioStreamFLAC::instantiate_playback() {
 	flacs->frames_mixed = 0;
 	flacs->active = false;
 	flacs->loops = 0;
-	
+
 	ERR_FAIL_COND_V(!flacs->flacd, Ref<AudioStreamPlaybackFLAC>());
 
 	return flacs;

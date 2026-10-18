@@ -164,6 +164,10 @@
 /modules/opus/**/*.py                         @godotengine/audio @godotengine/buildsystem
 /modules/opus/**/SCsub                        @godotengine/audio @godotengine/buildsystem
 /modules/opus/doc_classes/                    @godotengine/audio @godotengine/documentation
+/modules/flac/                                @godotengine/audio
+/modules/flac/**/*.py                         @godotengine/audio @godotengine/buildsystem
+/modules/flac/**/SCsub                        @godotengine/audio @godotengine/buildsystem
+/modules/flac/doc_classes/                    @godotengine/audio @godotengine/documentation
 
 ## Import
 /modules/astcenc/                             @godotengine/asset-pipeline

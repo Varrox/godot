@@ -1980,11 +1980,11 @@ static DRFLAC_INLINE drflac_uint8 drflac_crc8(drflac_uint8 crc, drflac_uint32 da
     leftoverDataMask = leftoverDataMaskTable[leftoverBits];
 
     switch (wholeBytes) {
-        case 4: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0xFF000000UL << leftoverBits)) >> (24 + leftoverBits)));
-        case 3: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0x00FF0000UL << leftoverBits)) >> (16 + leftoverBits)));
-        case 2: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0x0000FF00UL << leftoverBits)) >> ( 8 + leftoverBits)));
-        case 1: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0x000000FFUL << leftoverBits)) >> ( 0 + leftoverBits)));
-        case 0: if (leftoverBits > 0) crc = (drflac_uint8)((crc << leftoverBits) ^ drflac__crc8_table[(crc >> (8 - leftoverBits)) ^ (data & leftoverDataMask)]);
+        case 4: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0xFF000000UL << leftoverBits)) >> (24 + leftoverBits))); break;
+        case 3: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0x00FF0000UL << leftoverBits)) >> (16 + leftoverBits))); break;
+        case 2: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0x0000FF00UL << leftoverBits)) >> ( 8 + leftoverBits))); break;
+        case 1: crc = drflac_crc8_byte(crc, (drflac_uint8)((data & (0x000000FFUL << leftoverBits)) >> ( 0 + leftoverBits))); break;
+        case 0: if (leftoverBits > 0) crc = (drflac_uint8)((crc << leftoverBits) ^ drflac__crc8_table[(crc >> (8 - leftoverBits)) ^ (data & leftoverDataMask)]); break;
     }
     return crc;
 #endif
@@ -2017,15 +2017,15 @@ static DRFLAC_INLINE drflac_uint16 drflac_crc16_bytes(drflac_uint16 crc, drflac_
     switch (byteCount)
     {
 #ifdef DRFLAC_64BIT
-    case 8: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 56) & 0xFF));
-    case 7: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 48) & 0xFF));
-    case 6: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 40) & 0xFF));
-    case 5: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 32) & 0xFF));
+    case 8: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 56) & 0xFF)); break;
+    case 7: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 48) & 0xFF)); break;
+    case 6: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 40) & 0xFF)); break;
+    case 5: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 32) & 0xFF)); break;
 #endif
-    case 4: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 24) & 0xFF));
-    case 3: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 16) & 0xFF));
-    case 2: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >>  8) & 0xFF));
-    case 1: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >>  0) & 0xFF));
+    case 4: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 24) & 0xFF)); break;
+    case 3: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >> 16) & 0xFF)); break;
+    case 2: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >>  8) & 0xFF)); break;
+    case 1: crc = drflac_crc16_byte(crc, (drflac_uint8)((data >>  0) & 0xFF)); break;
     }
 
     return crc;
@@ -2070,11 +2070,11 @@ static DRFLAC_INLINE drflac_uint16 drflac_crc16__32bit(drflac_uint16 crc, drflac
 
     switch (wholeBytes) {
         default:
-        case 4: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0xFF000000UL << leftoverBits)) >> (24 + leftoverBits)));
-        case 3: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0x00FF0000UL << leftoverBits)) >> (16 + leftoverBits)));
-        case 2: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0x0000FF00UL << leftoverBits)) >> ( 8 + leftoverBits)));
-        case 1: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0x000000FFUL << leftoverBits)) >> ( 0 + leftoverBits)));
-        case 0: if (leftoverBits > 0) crc = (crc << leftoverBits) ^ drflac__crc16_table[(crc >> (16 - leftoverBits)) ^ (data & leftoverDataMask)];
+        case 4: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0xFF000000UL << leftoverBits)) >> (24 + leftoverBits))); break;
+        case 3: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0x00FF0000UL << leftoverBits)) >> (16 + leftoverBits))); break;
+        case 2: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0x0000FF00UL << leftoverBits)) >> ( 8 + leftoverBits))); break;
+        case 1: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (0x000000FFUL << leftoverBits)) >> ( 0 + leftoverBits))); break;
+        case 0: if (leftoverBits > 0) crc = (crc << leftoverBits) ^ drflac__crc16_table[(crc >> (16 - leftoverBits)) ^ (data & leftoverDataMask)]; break;
     }
     return crc;
 #endif
@@ -2105,15 +2105,15 @@ static DRFLAC_INLINE drflac_uint16 drflac_crc16__64bit(drflac_uint16 crc, drflac
 
     switch (wholeBytes) {
         default:
-        case 8: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0xFF000000 << 32) << leftoverBits)) >> (56 + leftoverBits)));    /* Weird "<< 32" bitshift is required for C89 because it doesn't support 64-bit constants. Should be optimized out by a good compiler. */
-        case 7: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x00FF0000 << 32) << leftoverBits)) >> (48 + leftoverBits)));
-        case 6: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x0000FF00 << 32) << leftoverBits)) >> (40 + leftoverBits)));
-        case 5: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x000000FF << 32) << leftoverBits)) >> (32 + leftoverBits)));
-        case 4: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0xFF000000      ) << leftoverBits)) >> (24 + leftoverBits)));
-        case 3: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x00FF0000      ) << leftoverBits)) >> (16 + leftoverBits)));
-        case 2: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x0000FF00      ) << leftoverBits)) >> ( 8 + leftoverBits)));
-        case 1: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x000000FF      ) << leftoverBits)) >> ( 0 + leftoverBits)));
-        case 0: if (leftoverBits > 0) crc = (crc << leftoverBits) ^ drflac__crc16_table[(crc >> (16 - leftoverBits)) ^ (data & leftoverDataMask)];
+        case 8: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0xFF000000 << 32) << leftoverBits)) >> (56 + leftoverBits))); break;    /* Weird "<< 32" bitshift is required for C89 because it doesn't support 64-bit constants. Should be optimized out by a good compiler. */
+        case 7: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x00FF0000 << 32) << leftoverBits)) >> (48 + leftoverBits))); break;
+        case 6: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x0000FF00 << 32) << leftoverBits)) >> (40 + leftoverBits))); break;
+        case 5: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x000000FF << 32) << leftoverBits)) >> (32 + leftoverBits))); break;
+        case 4: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0xFF000000      ) << leftoverBits)) >> (24 + leftoverBits))); break;
+        case 3: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x00FF0000      ) << leftoverBits)) >> (16 + leftoverBits))); break;
+        case 2: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x0000FF00      ) << leftoverBits)) >> ( 8 + leftoverBits))); break;
+        case 1: crc = drflac_crc16_byte(crc, (drflac_uint8)((data & (((drflac_uint64)0x000000FF      ) << leftoverBits)) >> ( 0 + leftoverBits))); break;
+        case 0: if (leftoverBits > 0) crc = (crc << leftoverBits) ^ drflac__crc16_table[(crc >> (16 - leftoverBits)) ^ (data & leftoverDataMask)]; break;
     }
     return crc;
 #endif
@@ -3019,38 +3019,38 @@ static DRFLAC_INLINE drflac_int32 drflac__calculate_prediction_32(drflac_uint32 
     /* VC++ optimizes this to a single jmp. I've not yet verified this for other compilers. */
     switch (order)
     {
-    case 32: prediction += coefficients[31] * pDecodedSamples[-32];
-    case 31: prediction += coefficients[30] * pDecodedSamples[-31];
-    case 30: prediction += coefficients[29] * pDecodedSamples[-30];
-    case 29: prediction += coefficients[28] * pDecodedSamples[-29];
-    case 28: prediction += coefficients[27] * pDecodedSamples[-28];
-    case 27: prediction += coefficients[26] * pDecodedSamples[-27];
-    case 26: prediction += coefficients[25] * pDecodedSamples[-26];
-    case 25: prediction += coefficients[24] * pDecodedSamples[-25];
-    case 24: prediction += coefficients[23] * pDecodedSamples[-24];
-    case 23: prediction += coefficients[22] * pDecodedSamples[-23];
-    case 22: prediction += coefficients[21] * pDecodedSamples[-22];
-    case 21: prediction += coefficients[20] * pDecodedSamples[-21];
-    case 20: prediction += coefficients[19] * pDecodedSamples[-20];
-    case 19: prediction += coefficients[18] * pDecodedSamples[-19];
-    case 18: prediction += coefficients[17] * pDecodedSamples[-18];
-    case 17: prediction += coefficients[16] * pDecodedSamples[-17];
-    case 16: prediction += coefficients[15] * pDecodedSamples[-16];
-    case 15: prediction += coefficients[14] * pDecodedSamples[-15];
-    case 14: prediction += coefficients[13] * pDecodedSamples[-14];
-    case 13: prediction += coefficients[12] * pDecodedSamples[-13];
-    case 12: prediction += coefficients[11] * pDecodedSamples[-12];
-    case 11: prediction += coefficients[10] * pDecodedSamples[-11];
-    case 10: prediction += coefficients[ 9] * pDecodedSamples[-10];
-    case  9: prediction += coefficients[ 8] * pDecodedSamples[- 9];
-    case  8: prediction += coefficients[ 7] * pDecodedSamples[- 8];
-    case  7: prediction += coefficients[ 6] * pDecodedSamples[- 7];
-    case  6: prediction += coefficients[ 5] * pDecodedSamples[- 6];
-    case  5: prediction += coefficients[ 4] * pDecodedSamples[- 5];
-    case  4: prediction += coefficients[ 3] * pDecodedSamples[- 4];
-    case  3: prediction += coefficients[ 2] * pDecodedSamples[- 3];
-    case  2: prediction += coefficients[ 1] * pDecodedSamples[- 2];
-    case  1: prediction += coefficients[ 0] * pDecodedSamples[- 1];
+    case 32: prediction += coefficients[31] * pDecodedSamples[-32]; break;
+    case 31: prediction += coefficients[30] * pDecodedSamples[-31]; break;
+    case 30: prediction += coefficients[29] * pDecodedSamples[-30]; break;
+    case 29: prediction += coefficients[28] * pDecodedSamples[-29]; break;
+    case 28: prediction += coefficients[27] * pDecodedSamples[-28]; break;
+    case 27: prediction += coefficients[26] * pDecodedSamples[-27]; break;
+    case 26: prediction += coefficients[25] * pDecodedSamples[-26]; break;
+    case 25: prediction += coefficients[24] * pDecodedSamples[-25]; break;
+    case 24: prediction += coefficients[23] * pDecodedSamples[-24]; break;
+    case 23: prediction += coefficients[22] * pDecodedSamples[-23]; break;
+    case 22: prediction += coefficients[21] * pDecodedSamples[-22]; break;
+    case 21: prediction += coefficients[20] * pDecodedSamples[-21]; break;
+    case 20: prediction += coefficients[19] * pDecodedSamples[-20]; break;
+    case 19: prediction += coefficients[18] * pDecodedSamples[-19]; break;
+    case 18: prediction += coefficients[17] * pDecodedSamples[-18]; break;
+    case 17: prediction += coefficients[16] * pDecodedSamples[-17]; break;
+    case 16: prediction += coefficients[15] * pDecodedSamples[-16]; break;
+    case 15: prediction += coefficients[14] * pDecodedSamples[-15]; break;
+    case 14: prediction += coefficients[13] * pDecodedSamples[-14]; break;
+    case 13: prediction += coefficients[12] * pDecodedSamples[-13]; break;
+    case 12: prediction += coefficients[11] * pDecodedSamples[-12]; break;
+    case 11: prediction += coefficients[10] * pDecodedSamples[-11]; break;
+    case 10: prediction += coefficients[ 9] * pDecodedSamples[-10]; break;
+    case  9: prediction += coefficients[ 8] * pDecodedSamples[- 9]; break;
+    case  8: prediction += coefficients[ 7] * pDecodedSamples[- 8]; break;
+    case  7: prediction += coefficients[ 6] * pDecodedSamples[- 7]; break;
+    case  6: prediction += coefficients[ 5] * pDecodedSamples[- 6]; break;
+    case  5: prediction += coefficients[ 4] * pDecodedSamples[- 5]; break;
+    case  4: prediction += coefficients[ 3] * pDecodedSamples[- 4]; break;
+    case  3: prediction += coefficients[ 2] * pDecodedSamples[- 3]; break;
+    case  2: prediction += coefficients[ 1] * pDecodedSamples[- 2]; break;
+    case  1: prediction += coefficients[ 0] * pDecodedSamples[- 1]; break;
     }
 
     return (drflac_int32)(prediction >> shift);
@@ -3199,38 +3199,38 @@ static DRFLAC_INLINE drflac_int32 drflac__calculate_prediction_64(drflac_uint32 
     prediction = 0;
     switch (order)
     {
-    case 32: prediction += coefficients[31] * (drflac_int64)pDecodedSamples[-32];
-    case 31: prediction += coefficients[30] * (drflac_int64)pDecodedSamples[-31];
-    case 30: prediction += coefficients[29] * (drflac_int64)pDecodedSamples[-30];
-    case 29: prediction += coefficients[28] * (drflac_int64)pDecodedSamples[-29];
-    case 28: prediction += coefficients[27] * (drflac_int64)pDecodedSamples[-28];
-    case 27: prediction += coefficients[26] * (drflac_int64)pDecodedSamples[-27];
-    case 26: prediction += coefficients[25] * (drflac_int64)pDecodedSamples[-26];
-    case 25: prediction += coefficients[24] * (drflac_int64)pDecodedSamples[-25];
-    case 24: prediction += coefficients[23] * (drflac_int64)pDecodedSamples[-24];
-    case 23: prediction += coefficients[22] * (drflac_int64)pDecodedSamples[-23];
-    case 22: prediction += coefficients[21] * (drflac_int64)pDecodedSamples[-22];
-    case 21: prediction += coefficients[20] * (drflac_int64)pDecodedSamples[-21];
-    case 20: prediction += coefficients[19] * (drflac_int64)pDecodedSamples[-20];
-    case 19: prediction += coefficients[18] * (drflac_int64)pDecodedSamples[-19];
-    case 18: prediction += coefficients[17] * (drflac_int64)pDecodedSamples[-18];
-    case 17: prediction += coefficients[16] * (drflac_int64)pDecodedSamples[-17];
-    case 16: prediction += coefficients[15] * (drflac_int64)pDecodedSamples[-16];
-    case 15: prediction += coefficients[14] * (drflac_int64)pDecodedSamples[-15];
-    case 14: prediction += coefficients[13] * (drflac_int64)pDecodedSamples[-14];
-    case 13: prediction += coefficients[12] * (drflac_int64)pDecodedSamples[-13];
-    case 12: prediction += coefficients[11] * (drflac_int64)pDecodedSamples[-12];
-    case 11: prediction += coefficients[10] * (drflac_int64)pDecodedSamples[-11];
-    case 10: prediction += coefficients[ 9] * (drflac_int64)pDecodedSamples[-10];
-    case  9: prediction += coefficients[ 8] * (drflac_int64)pDecodedSamples[- 9];
-    case  8: prediction += coefficients[ 7] * (drflac_int64)pDecodedSamples[- 8];
-    case  7: prediction += coefficients[ 6] * (drflac_int64)pDecodedSamples[- 7];
-    case  6: prediction += coefficients[ 5] * (drflac_int64)pDecodedSamples[- 6];
-    case  5: prediction += coefficients[ 4] * (drflac_int64)pDecodedSamples[- 5];
-    case  4: prediction += coefficients[ 3] * (drflac_int64)pDecodedSamples[- 4];
-    case  3: prediction += coefficients[ 2] * (drflac_int64)pDecodedSamples[- 3];
-    case  2: prediction += coefficients[ 1] * (drflac_int64)pDecodedSamples[- 2];
-    case  1: prediction += coefficients[ 0] * (drflac_int64)pDecodedSamples[- 1];
+    case 32: prediction += coefficients[31] * (drflac_int64)pDecodedSamples[-32]; break;
+    case 31: prediction += coefficients[30] * (drflac_int64)pDecodedSamples[-31]; break;
+    case 30: prediction += coefficients[29] * (drflac_int64)pDecodedSamples[-30]; break;
+    case 29: prediction += coefficients[28] * (drflac_int64)pDecodedSamples[-29]; break;
+    case 28: prediction += coefficients[27] * (drflac_int64)pDecodedSamples[-28]; break;
+    case 27: prediction += coefficients[26] * (drflac_int64)pDecodedSamples[-27]; break;
+    case 26: prediction += coefficients[25] * (drflac_int64)pDecodedSamples[-26]; break;
+    case 25: prediction += coefficients[24] * (drflac_int64)pDecodedSamples[-25]; break;
+    case 24: prediction += coefficients[23] * (drflac_int64)pDecodedSamples[-24]; break;
+    case 23: prediction += coefficients[22] * (drflac_int64)pDecodedSamples[-23]; break;
+    case 22: prediction += coefficients[21] * (drflac_int64)pDecodedSamples[-22]; break;
+    case 21: prediction += coefficients[20] * (drflac_int64)pDecodedSamples[-21]; break;
+    case 20: prediction += coefficients[19] * (drflac_int64)pDecodedSamples[-20]; break;
+    case 19: prediction += coefficients[18] * (drflac_int64)pDecodedSamples[-19]; break;
+    case 18: prediction += coefficients[17] * (drflac_int64)pDecodedSamples[-18]; break;
+    case 17: prediction += coefficients[16] * (drflac_int64)pDecodedSamples[-17]; break;
+    case 16: prediction += coefficients[15] * (drflac_int64)pDecodedSamples[-16]; break;
+    case 15: prediction += coefficients[14] * (drflac_int64)pDecodedSamples[-15]; break;
+    case 14: prediction += coefficients[13] * (drflac_int64)pDecodedSamples[-14]; break;
+    case 13: prediction += coefficients[12] * (drflac_int64)pDecodedSamples[-13]; break;
+    case 12: prediction += coefficients[11] * (drflac_int64)pDecodedSamples[-12]; break;
+    case 11: prediction += coefficients[10] * (drflac_int64)pDecodedSamples[-11]; break;
+    case 10: prediction += coefficients[ 9] * (drflac_int64)pDecodedSamples[-10]; break;
+    case  9: prediction += coefficients[ 8] * (drflac_int64)pDecodedSamples[- 9]; break;
+    case  8: prediction += coefficients[ 7] * (drflac_int64)pDecodedSamples[- 8]; break;
+    case  7: prediction += coefficients[ 6] * (drflac_int64)pDecodedSamples[- 7]; break;
+    case  6: prediction += coefficients[ 5] * (drflac_int64)pDecodedSamples[- 6]; break;
+    case  5: prediction += coefficients[ 4] * (drflac_int64)pDecodedSamples[- 5]; break;
+    case  4: prediction += coefficients[ 3] * (drflac_int64)pDecodedSamples[- 4]; break;
+    case  3: prediction += coefficients[ 2] * (drflac_int64)pDecodedSamples[- 3]; break;
+    case  2: prediction += coefficients[ 1] * (drflac_int64)pDecodedSamples[- 2]; break;
+    case  1: prediction += coefficients[ 0] * (drflac_int64)pDecodedSamples[- 1]; break;
     }
 #endif
 
@@ -3939,18 +3939,18 @@ static drflac_bool32 drflac__decode_samples_with_residual__rice__sse41_32(drflac
     /* This causes strict-aliasing warnings with GCC. */
     switch (order)
     {
-    case 12: ((drflac_int32*)&coefficients128_8)[0] = coefficients[11]; ((drflac_int32*)&samples128_8)[0] = pDecodedSamples[-12];
-    case 11: ((drflac_int32*)&coefficients128_8)[1] = coefficients[10]; ((drflac_int32*)&samples128_8)[1] = pDecodedSamples[-11];
-    case 10: ((drflac_int32*)&coefficients128_8)[2] = coefficients[ 9]; ((drflac_int32*)&samples128_8)[2] = pDecodedSamples[-10];
-    case 9:  ((drflac_int32*)&coefficients128_8)[3] = coefficients[ 8]; ((drflac_int32*)&samples128_8)[3] = pDecodedSamples[- 9];
-    case 8:  ((drflac_int32*)&coefficients128_4)[0] = coefficients[ 7]; ((drflac_int32*)&samples128_4)[0] = pDecodedSamples[- 8];
-    case 7:  ((drflac_int32*)&coefficients128_4)[1] = coefficients[ 6]; ((drflac_int32*)&samples128_4)[1] = pDecodedSamples[- 7];
-    case 6:  ((drflac_int32*)&coefficients128_4)[2] = coefficients[ 5]; ((drflac_int32*)&samples128_4)[2] = pDecodedSamples[- 6];
-    case 5:  ((drflac_int32*)&coefficients128_4)[3] = coefficients[ 4]; ((drflac_int32*)&samples128_4)[3] = pDecodedSamples[- 5];
-    case 4:  ((drflac_int32*)&coefficients128_0)[0] = coefficients[ 3]; ((drflac_int32*)&samples128_0)[0] = pDecodedSamples[- 4];
-    case 3:  ((drflac_int32*)&coefficients128_0)[1] = coefficients[ 2]; ((drflac_int32*)&samples128_0)[1] = pDecodedSamples[- 3];
-    case 2:  ((drflac_int32*)&coefficients128_0)[2] = coefficients[ 1]; ((drflac_int32*)&samples128_0)[2] = pDecodedSamples[- 2];
-    case 1:  ((drflac_int32*)&coefficients128_0)[3] = coefficients[ 0]; ((drflac_int32*)&samples128_0)[3] = pDecodedSamples[- 1];
+    case 12: ((drflac_int32*)&coefficients128_8)[0] = coefficients[11]; ((drflac_int32*)&samples128_8)[0] = pDecodedSamples[-12]; break;
+    case 11: ((drflac_int32*)&coefficients128_8)[1] = coefficients[10]; ((drflac_int32*)&samples128_8)[1] = pDecodedSamples[-11]; break;
+    case 10: ((drflac_int32*)&coefficients128_8)[2] = coefficients[ 9]; ((drflac_int32*)&samples128_8)[2] = pDecodedSamples[-10]; break;
+    case 9:  ((drflac_int32*)&coefficients128_8)[3] = coefficients[ 8]; ((drflac_int32*)&samples128_8)[3] = pDecodedSamples[- 9]; break;
+    case 8:  ((drflac_int32*)&coefficients128_4)[0] = coefficients[ 7]; ((drflac_int32*)&samples128_4)[0] = pDecodedSamples[- 8]; break;
+    case 7:  ((drflac_int32*)&coefficients128_4)[1] = coefficients[ 6]; ((drflac_int32*)&samples128_4)[1] = pDecodedSamples[- 7]; break;
+    case 6:  ((drflac_int32*)&coefficients128_4)[2] = coefficients[ 5]; ((drflac_int32*)&samples128_4)[2] = pDecodedSamples[- 6]; break;
+    case 5:  ((drflac_int32*)&coefficients128_4)[3] = coefficients[ 4]; ((drflac_int32*)&samples128_4)[3] = pDecodedSamples[- 5]; break;
+    case 4:  ((drflac_int32*)&coefficients128_0)[0] = coefficients[ 3]; ((drflac_int32*)&samples128_0)[0] = pDecodedSamples[- 4]; break;
+    case 3:  ((drflac_int32*)&coefficients128_0)[1] = coefficients[ 2]; ((drflac_int32*)&samples128_0)[1] = pDecodedSamples[- 3]; break;
+    case 2:  ((drflac_int32*)&coefficients128_0)[2] = coefficients[ 1]; ((drflac_int32*)&samples128_0)[2] = pDecodedSamples[- 2]; break;
+    case 1:  ((drflac_int32*)&coefficients128_0)[3] = coefficients[ 0]; ((drflac_int32*)&samples128_0)[3] = pDecodedSamples[- 1]; break;
     }
 #endif
 
@@ -4142,18 +4142,18 @@ static drflac_bool32 drflac__decode_samples_with_residual__rice__sse41_64(drflac
 #else
     switch (order)
     {
-    case 12: ((drflac_int32*)&coefficients128_8)[0] = coefficients[11]; ((drflac_int32*)&samples128_8)[0] = pDecodedSamples[-12];
-    case 11: ((drflac_int32*)&coefficients128_8)[1] = coefficients[10]; ((drflac_int32*)&samples128_8)[1] = pDecodedSamples[-11];
-    case 10: ((drflac_int32*)&coefficients128_8)[2] = coefficients[ 9]; ((drflac_int32*)&samples128_8)[2] = pDecodedSamples[-10];
-    case 9:  ((drflac_int32*)&coefficients128_8)[3] = coefficients[ 8]; ((drflac_int32*)&samples128_8)[3] = pDecodedSamples[- 9];
-    case 8:  ((drflac_int32*)&coefficients128_4)[0] = coefficients[ 7]; ((drflac_int32*)&samples128_4)[0] = pDecodedSamples[- 8];
-    case 7:  ((drflac_int32*)&coefficients128_4)[1] = coefficients[ 6]; ((drflac_int32*)&samples128_4)[1] = pDecodedSamples[- 7];
-    case 6:  ((drflac_int32*)&coefficients128_4)[2] = coefficients[ 5]; ((drflac_int32*)&samples128_4)[2] = pDecodedSamples[- 6];
-    case 5:  ((drflac_int32*)&coefficients128_4)[3] = coefficients[ 4]; ((drflac_int32*)&samples128_4)[3] = pDecodedSamples[- 5];
-    case 4:  ((drflac_int32*)&coefficients128_0)[0] = coefficients[ 3]; ((drflac_int32*)&samples128_0)[0] = pDecodedSamples[- 4];
-    case 3:  ((drflac_int32*)&coefficients128_0)[1] = coefficients[ 2]; ((drflac_int32*)&samples128_0)[1] = pDecodedSamples[- 3];
-    case 2:  ((drflac_int32*)&coefficients128_0)[2] = coefficients[ 1]; ((drflac_int32*)&samples128_0)[2] = pDecodedSamples[- 2];
-    case 1:  ((drflac_int32*)&coefficients128_0)[3] = coefficients[ 0]; ((drflac_int32*)&samples128_0)[3] = pDecodedSamples[- 1];
+    case 12: ((drflac_int32*)&coefficients128_8)[0] = coefficients[11]; ((drflac_int32*)&samples128_8)[0] = pDecodedSamples[-12]; break;
+    case 11: ((drflac_int32*)&coefficients128_8)[1] = coefficients[10]; ((drflac_int32*)&samples128_8)[1] = pDecodedSamples[-11]; break;
+    case 10: ((drflac_int32*)&coefficients128_8)[2] = coefficients[ 9]; ((drflac_int32*)&samples128_8)[2] = pDecodedSamples[-10]; break;
+    case 9:  ((drflac_int32*)&coefficients128_8)[3] = coefficients[ 8]; ((drflac_int32*)&samples128_8)[3] = pDecodedSamples[- 9]; break;
+    case 8:  ((drflac_int32*)&coefficients128_4)[0] = coefficients[ 7]; ((drflac_int32*)&samples128_4)[0] = pDecodedSamples[- 8]; break;
+    case 7:  ((drflac_int32*)&coefficients128_4)[1] = coefficients[ 6]; ((drflac_int32*)&samples128_4)[1] = pDecodedSamples[- 7]; break;
+    case 6:  ((drflac_int32*)&coefficients128_4)[2] = coefficients[ 5]; ((drflac_int32*)&samples128_4)[2] = pDecodedSamples[- 6]; break;
+    case 5:  ((drflac_int32*)&coefficients128_4)[3] = coefficients[ 4]; ((drflac_int32*)&samples128_4)[3] = pDecodedSamples[- 5]; break;
+    case 4:  ((drflac_int32*)&coefficients128_0)[0] = coefficients[ 3]; ((drflac_int32*)&samples128_0)[0] = pDecodedSamples[- 4]; break;
+    case 3:  ((drflac_int32*)&coefficients128_0)[1] = coefficients[ 2]; ((drflac_int32*)&samples128_0)[1] = pDecodedSamples[- 3]; break;
+    case 2:  ((drflac_int32*)&coefficients128_0)[2] = coefficients[ 1]; ((drflac_int32*)&samples128_0)[2] = pDecodedSamples[- 2]; break;
+    case 1:  ((drflac_int32*)&coefficients128_0)[3] = coefficients[ 0]; ((drflac_int32*)&samples128_0)[3] = pDecodedSamples[- 1]; break;
     }
 #endif
 
@@ -4182,17 +4182,17 @@ static drflac_bool32 drflac__decode_samples_with_residual__rice__sse41_64(drflac
             switch (order)
             {
             case 12:
-            case 11: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_8, _MM_SHUFFLE(1, 1, 0, 0)), _mm_shuffle_epi32(samples128_8, _MM_SHUFFLE(1, 1, 0, 0))));
+            case 11: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_8, _MM_SHUFFLE(1, 1, 0, 0)), _mm_shuffle_epi32(samples128_8, _MM_SHUFFLE(1, 1, 0, 0)))); break;
             case 10:
-            case  9: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_8, _MM_SHUFFLE(3, 3, 2, 2)), _mm_shuffle_epi32(samples128_8, _MM_SHUFFLE(3, 3, 2, 2))));
+            case  9: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_8, _MM_SHUFFLE(3, 3, 2, 2)), _mm_shuffle_epi32(samples128_8, _MM_SHUFFLE(3, 3, 2, 2)))); break;
             case  8:
-            case  7: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_4, _MM_SHUFFLE(1, 1, 0, 0)), _mm_shuffle_epi32(samples128_4, _MM_SHUFFLE(1, 1, 0, 0))));
+            case  7: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_4, _MM_SHUFFLE(1, 1, 0, 0)), _mm_shuffle_epi32(samples128_4, _MM_SHUFFLE(1, 1, 0, 0)))); break;
             case  6:
-            case  5: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_4, _MM_SHUFFLE(3, 3, 2, 2)), _mm_shuffle_epi32(samples128_4, _MM_SHUFFLE(3, 3, 2, 2))));
+            case  5: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_4, _MM_SHUFFLE(3, 3, 2, 2)), _mm_shuffle_epi32(samples128_4, _MM_SHUFFLE(3, 3, 2, 2)))); break;
             case  4:
-            case  3: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_0, _MM_SHUFFLE(1, 1, 0, 0)), _mm_shuffle_epi32(samples128_0, _MM_SHUFFLE(1, 1, 0, 0))));
+            case  3: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_0, _MM_SHUFFLE(1, 1, 0, 0)), _mm_shuffle_epi32(samples128_0, _MM_SHUFFLE(1, 1, 0, 0)))); break;
             case  2:
-            case  1: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_0, _MM_SHUFFLE(3, 3, 2, 2)), _mm_shuffle_epi32(samples128_0, _MM_SHUFFLE(3, 3, 2, 2))));
+            case  1: prediction128 = _mm_add_epi64(prediction128, _mm_mul_epi32(_mm_shuffle_epi32(coefficients128_0, _MM_SHUFFLE(3, 3, 2, 2)), _mm_shuffle_epi32(samples128_0, _MM_SHUFFLE(3, 3, 2, 2)))); break;
             }
 
             /* Horizontal add and shift. */
@@ -4679,17 +4679,17 @@ static drflac_bool32 drflac__decode_samples_with_residual__rice__neon_64(drflac_
             switch (order)
             {
             case 12:
-            case 11: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_low_s32(coefficients128_8), vget_low_s32(samples128_8)));
+            case 11: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_low_s32(coefficients128_8), vget_low_s32(samples128_8))); break;
             case 10:
-            case  9: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_high_s32(coefficients128_8), vget_high_s32(samples128_8)));
+            case  9: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_high_s32(coefficients128_8), vget_high_s32(samples128_8))); break;
             case  8:
-            case  7: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_low_s32(coefficients128_4), vget_low_s32(samples128_4)));
+            case  7: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_low_s32(coefficients128_4), vget_low_s32(samples128_4))); break;
             case  6:
-            case  5: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_high_s32(coefficients128_4), vget_high_s32(samples128_4)));
+            case  5: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_high_s32(coefficients128_4), vget_high_s32(samples128_4))); break;
             case  4:
-            case  3: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_low_s32(coefficients128_0), vget_low_s32(samples128_0)));
+            case  3: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_low_s32(coefficients128_0), vget_low_s32(samples128_0))); break;
             case  2:
-            case  1: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_high_s32(coefficients128_0), vget_high_s32(samples128_0)));
+            case  1: prediction128 = vaddq_s64(prediction128, vmull_s32(vget_high_s32(coefficients128_0), vget_high_s32(samples128_0))); break;
             }
 
             /* Horizontal add and shift. */

@@ -47,7 +47,7 @@ class AudioStreamPlaybackFLAC : public AudioStreamPlaybackResampled {
 
 	bool looping_override = false;
 	bool looping = false;
-	drflac* flacd = nullptr;
+	drflac *flacd = nullptr;
 	uint32_t frames_mixed = 0;
 	bool active = false;
 	int loops = 0;
@@ -109,7 +109,7 @@ class AudioStreamFLAC : public AudioStream {
 	int bar_beats = 4;
 	Dictionary tags;
 
-	static void metadata_proc(void* pUserData, drflac_metadata* pMetadata);
+	static void metadata_proc(void *pUserData, drflac_metadata *pMetadata);
 
 protected:
 	static void _bind_methods();
